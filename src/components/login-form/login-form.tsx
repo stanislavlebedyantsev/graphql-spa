@@ -3,10 +3,17 @@ import { useAuth } from "@/hooks/auth";
 import { Routes } from "@/types";
 import Link from "next/link";
 import { RedirectType, redirect } from "next/navigation";
-import { FormEventHandler, useEffect } from "react";
+import {
+  ChangeEventHandler,
+  FormEventHandler,
+  useEffect,
+  useState,
+} from "react";
 
 export const LoginForm = () => {
   const { user, handleUpdateUser } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     if (user) {
@@ -14,12 +21,20 @@ export const LoginForm = () => {
     }
   }, [user]);
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault()
-    handleUpdateUser({ fullName: "Test", email: "test@test.co" });
+    e.preventDefault();
+    handleUpdateUser({ fullName: email.split("@")[0], email });
+  };
+
+  const handleEmailChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setPassword(e.target.value);
   };
 
   return (
-    <form className="mt-6" onSubmit={handleSubmit} >
+    <form className="mt-6" onSubmit={handleSubmit}>
       <div className="mb-4">
         <label
           htmlFor="email"
@@ -29,6 +44,9 @@ export const LoginForm = () => {
         </label>
         <input
           type="email"
+          required
+          value={email}
+          onChange={handleEmailChange}
           className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-gray-400 focus:ring-gray-300 focus:outline-none focus:ring focus:ring-opacity-40"
         />
       </div>
@@ -41,6 +59,9 @@ export const LoginForm = () => {
         </label>
         <input
           type="password"
+          required
+          value={password}
+          onChange={handlePasswordChange}
           className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-gray-400 focus:ring-gray-300 focus:outline-none focus:ring focus:ring-opacity-40"
         />
       </div>

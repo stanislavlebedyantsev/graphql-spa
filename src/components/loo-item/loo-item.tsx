@@ -6,7 +6,7 @@ interface Props {
 }
 export const LooItem: FC<Props> = ({ item }) => {
   return (
-    <div key={item.id} className="p-4 max-w-sm">
+    <div key={item.id} className="p-4 w-full">
       <div className="flex rounded-lg h-full dark:bg-gray-800 bg-teal-400 p-8 flex-col">
         <div className="flex items-center mb-3">
           <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full dark:bg-indigo-500 bg-indigo-500 text-white flex-shrink-0">

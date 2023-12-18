@@ -1,6 +1,6 @@
 query GetLoos($filters: LooFilter!) {
   loos(filters: $filters) {
-    loos [{
+    loos {
       id
       createdAt
       updatedAt
@@ -25,5 +25,5 @@ query GetLoos($filters: LooFilter!) {
       geohash
 
     }
-  }]
+  }
 }
