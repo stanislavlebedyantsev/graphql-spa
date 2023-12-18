@@ -1,0 +1,29 @@
+query GetLoos($filters: LooFilter!) {
+  loos(filters: $filters) {
+    loos {
+      id
+      createdAt
+      updatedAt
+      verifiedAt
+      active
+      name
+      openingTimes
+      accessible
+      allGender
+      men
+      women
+      urinalOnly
+      children
+      babyChange
+      radar
+      attended
+      automatic
+      noPayment
+      paymentDetails
+      notes
+      removalReason
+      geohash
+
+    }
+  }
+}
